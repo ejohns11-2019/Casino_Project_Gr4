@@ -1,9 +1,11 @@
+require 'colorize'
+
 class High_low
 
     # attr_accessor :playagain
 
 def initialize
-puts "Welcome to a game of High-Low."
+puts "Welcome to a game of High-Low.".magenta
 @playagain = "y"
 end
 
@@ -11,25 +13,25 @@ def play_game
     while @playagain == "y"
         win = false
         randNum = rand(52) + 1
-        puts "Please enter a number (1-52) or type -1 to exit: "
+        puts "Please enter a number (1-52) or type -1 to exit: ".cyan
         while !win
             guessedNumber = gets.to_i
             if guessedNumber == -1 then
                 break
 
             elsif guessedNumber > randNum then
-                puts "Too high, try again."
+                puts "Too high, try again.".red
             elsif guessedNumber < randNum then
-                puts "Too low, try again."
+                puts "Too low, try again.".red
             else
-                puts "You win!"
+                puts "You win!".green
                 win = true
             end
         end
 
-    puts "Want to play again? (y/n)"
+    puts "Want to play again? (y/n)".blue
     @playagain = gets.chomp!
-    puts "Thanks for playing!"
+    puts "Thanks for playing!".yellow
     end
 end
 
