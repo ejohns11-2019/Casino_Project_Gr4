@@ -1,7 +1,7 @@
 require_relative 'Dice_game'
 require_relative 'Person'
 require_relative 'Blackjack'
-# require_relative 'High_low'
+require_relative 'High_low'
 # require_relative 'Slots'
 require_relative 'Wallet'
 require_relative 'all_players'

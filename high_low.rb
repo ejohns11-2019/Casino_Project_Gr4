@@ -6,13 +6,12 @@ class High_low
     attr_accessor :person
 
    
-def initialize(person)
+ def initialize
     @person = person
     puts "Welcome to a game of High-Low.".magenta
     @playagain = "y"
     play_game
-
-
+ end
 end
 
 def play_game
@@ -43,7 +42,6 @@ end
 
 
 game = High_low.new
-game.play_game
+game = play_game
 
 
-end
