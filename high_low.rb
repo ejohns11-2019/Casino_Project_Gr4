@@ -1,12 +1,18 @@
 require 'colorize'
+require_relative 'person'
 
 class High_low
 
-    # attr_accessor :playagain
+    attr_accessor :person
 
-def initialize
-puts "Welcome to a game of High-Low.".magenta
-@playagain = "y"
+   
+def initialize(person)
+    @person = person
+    puts "Welcome to a game of High-Low.".magenta
+    @playagain = "y"
+    play_game
+
+
 end
 
 def play_game
