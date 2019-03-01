@@ -41,7 +41,7 @@ def play_game
 end
 
 
-game = High_low.new
+# game = High_low.new
 
 
 

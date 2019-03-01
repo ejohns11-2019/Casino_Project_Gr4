@@ -55,6 +55,7 @@ class Casino_menu
     when 2
       @person.place_bet
       game.play_game(@person)
+      High_low.new(@person)
       win_or_lose
     when 3
       @person.place_bet
