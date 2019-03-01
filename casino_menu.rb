@@ -11,7 +11,10 @@ class Casino_menu
   attr_accessor :person #:players
 
   def initialize
-    @person = create_person
+    create_person
+    menu
+    user_selection
+    win_or_lose
     # @players = []
   end
 
@@ -51,7 +54,7 @@ class Casino_menu
       # Slots.new
     when 2
       @person.place_bet
-      High_low.new(@person)
+      game.play_game(@person)
       win_or_lose
     when 3
       @person.place_bet

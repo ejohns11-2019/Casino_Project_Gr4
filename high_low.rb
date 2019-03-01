@@ -42,6 +42,6 @@ end
 
 
 game = High_low.new
-game = play_game
+
 
 
