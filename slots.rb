@@ -1,68 +1,92 @@
 
 
 
-puts "----Slot Machine-----"
-# pull handle
-puts "Begin by pulling handle down"
+require 'colorize'
+require_relative 'person'
 
 
-# random numbers correspond with a 'symbol' eg lemon, cherry, bar
-def spin
+class Slots
+
+
+def initialize(person) #creating a variable to pass between classes
+  @person = person
+  game_menu
+end
+
+
+def game_menu
+    puts "----Slot Machine-----".red
+    # deposit money from wallet in order to play
+    # ask user to insert $
+    # pull handle
+    puts "---Menu---".red
+    puts "1) Play".cyan
+    puts "2) Leave game".cyan
+      play_or_not = gets.to_i
+      case play_or_not
+      when 1
+          puts 'beginning game'
+          get_started
+      when 2
+          puts 'leaving'
+          exit
+      else
+          puts "Sorry invalid input"
+          game_menu
+      end
+end
+
+
+def get_started
+    puts "---Slot Options---".red
+    puts "1) Spin".cyan
+    puts "2) Return to Slots Main Menu".cyan
+    spin_or_leave = gets.to_i
+    case spin_or_leave
+      when 1
+          spin_and_analyze
+      when 2
+          game_menu
+      else
+        puts "Invalid input, let's try that again".cyan
+        get_started
+    end
+end
+
+def spin_and_analyze
+  puts '---------------------'.red
     @first_rand = rand(1..16)
     @second_rand = rand(1..16)
     @third_rand = rand(1..16)
     @fourth_rand = rand(1..16)
-    @result = [@first_rand, @second_rand, @third_rand, @fourth_rand]
-    puts @result
-end
-
-
-# two of a kind
-def two_of_a_kind   
-    if (@first_rand == @second_rand) || @first_rand == @third_rand || @first_rand == @fourth_rand
-        puts 'two of a kind'
-    elsif (@second_rand == @third_rand) || (@second_rand == @fourth_rand)
-        puts 'two of a kind'
+    @four_nums = [@first_rand, @second_rand, @third_rand, @fourth_rand]
+    puts "   [#{@first_rand}] [#{@second_rand}] [#{@third_rand}] [#{@fourth_rand}]"
+  puts '---------------------'.red
+    if @first_rand == @second_rand && @first_rand == @third_rand && @first_rand == @fourth_rand
+      puts "Four of a kind!".cyan
+    elsif (@first_rand == @second_rand) && (@first_rand == @third_rand) || (@first_rand == @third_rand) && (@first_rand == @fourth_rand) || (@second_rand == @third_rand) && (@second_rand == @fourth_rand)
+      puts "Three of a kind!".cyan
+    elsif (@first_rand == @second_rand) || (@first_rand == @third_rand) || (@first_rand == @fourth_rand) || (@second_rand == @third_rand) || (@second_rand == @fourth_rand) || (@third_rand == @fourth_rand)
+      puts "Two of a kind!".cyan
+    else
+      puts "No matches".cyan
     end
-    # add certain amount to wallet
-    # put how much you won on that spin
-end
-
-# three of a kind
-def three_of_a_kind
-    if (@first_rand == @second_rand && @first_rand == @third_rand)
-        puts 'three of a kind'
-    elsif (@first_rand == @third_rand && @first_rand == @fourth_rand)
-        puts 'three of a kind'
-    elsif (@second_rand == @third_rand && @second_rand == @fourth_rand)
-        puts 'three of a kind'
+  puts 'Play again? (y/n)'.cyan
+    play_again = gets.chomp.downcase
+    case play_again
+    when 'y'
+      get_started
+    when 'n'
+      game_menu
     end
-    # add certain amount to wallet
-    # put how much you won on that spin
+end
+ 
+
+
+
 end
 
-# four of a kind
-def four_of_a_kind
-    if  @first_rand == @second_rand && @third_rand && @fourth_rand
-        puts 'Four of a kind'
-    end
-    # add certain amount to wallet
-    # put how much you won on that spin
-end
-
-
-def analyze_of_a_kind
-    # if two three of a kind, can't also be two of a kind
-    # will puts what you got (ex. two of a kind)
-    # if four of a kind, can't also be three of a kind and two of a kind
-end
-
-
-spin
-two_of_a_kind
-three_of_a_kind
-four_of_a_kind
-
+game_menu
 
 
 
